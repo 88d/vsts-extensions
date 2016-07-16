@@ -97,6 +97,12 @@ try {
             $WordApp = New-Object -ComObject Word.Application
             Foreach ($file in $fileConvertList){
                 Write-VstsTaskVerbose "Converting $($file.in) to $($file.out)"
+                if(Test-Path $file.in){
+                    New-Item -ItemType File -Force $file.out | Out-Null
+                    Remove-Item $file.out -Force | Out-Null
+                } else {
+                    Write-VstsTaskError "File $($file.in) not found!"
+                }
                 $docFile = $WordApp.Documents.Open($file.in)
                 $pdfName = $file.out
                 $docFile.SaveAs($pdfName, 17)
