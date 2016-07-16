@@ -97,11 +97,11 @@ try {
             $WordApp = New-Object -ComObject Word.Application
             Foreach ($file in $fileConvertList){
                 Write-VstsTaskVerbose "Converting $($file.in) to $($file.out)"
-                $docFile = $WordApp.Documents.Open($in)
-                $pdfName = $out
-                $docFile.SaveAs([ref]$pdfName, [ref]17)
+                $docFile = $WordApp.Documents.Open($file.in)
+                $pdfName = $file.out
+                $docFile.SaveAs($pdfName, 17)
                 $docFile.Close()                
-                #Write-VstsSetProgress (($fileNumber / $totalFileCount) * 100)
+                Write-VstsSetProgress (($fileNumber / $totalFileCount) * 100)
                 $fileNumber += 1;
             }
         }
@@ -128,7 +128,7 @@ try {
             } else {
                 Write-VstsTaskError "File $($file.in) not found!"            
             }            
-            #Write-VstsSetProgress (($fileNumber / $totalFileCount) * 100)
+            Write-VstsSetProgress (($fileNumber / $totalFileCount) * 100)
             $fileNumber += 1;
         }
     }
@@ -143,10 +143,7 @@ try {
     Compress-Archive -Path $OutputFolder\* -DestinationPath $zipOutputPath -Force
 
 } catch {
-    $ErrorMessage = $_.Exception.Message
-    $FailedItem = $_.Exception.ItemName
     Write-VstsTaskError "An Error happend in CreateDocumentationTask"
-    Write-VstsTaskError "$ErrorMessage $FailedItem"
     throw
 }
 
