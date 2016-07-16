@@ -1,0 +1,21 @@
+{
+    "documents":[
+        {
+            "in":"UserGuide/cMOREShare_5.2_UserGuide_Administratoren_DE.docx",
+            "out":"UserGuide/cMOREShare_${Version}_UserGuide_Administratoren_DE.docx"
+        },
+                {
+            "in":"UserGuide/cMOREShare_5.2_UserGuide_Administrators_EN.docx",
+            "out":"UserGuide/cMOREShare_${Version}_UserGuide_Administrators_EN.docx"
+        },
+                {
+            "in":"UserGuide/cMOREShare_5.2_UserGuide_Benutzer_DE.docx",
+            "out":"UserGuide/cMOREShare_${Version}_UserGuide_Benutzer_DE.docx"
+        },
+                {
+            "in":"UserGuide/cMOREShare_5.2_UserGuide_Users_EN.docx",
+            "out":"UserGuide/cMOREShare_${Version}_UserGuide_Users_EN.docx"
+        },
+        "CHANGELOG.txt"
+    ]
+}

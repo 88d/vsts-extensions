@@ -1,0 +1,69 @@
+﻿{
+  "id": "a4687d0d-fa51-40e9-99e5-028d85c8239a",
+  "name": "CreateDocumentationTask",
+  "friendlyName": "Create Documentation Task",
+  "description": "This build tasks creates a documentation Zip",
+  "helpMarkDown": "[More Information](https://url.to/yourmarkdown)",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "author": "conuk",
+  "version": {
+    "Major": 0,
+    "Minor": 2,
+    "Patch": 4
+  },
+  "demands": [
+  ],
+  "minimumAgentVersion": "1.91.0",
+  "groups": [],
+  "inputs": [
+    {
+      "name": "ConfigPath",
+      "type": "filePath",
+      "label": "Path to docs.json",
+      "defaultValue": "$(Build.SourcesDirectory)\\docs.json",
+      "required": true
+    },
+    {
+      "name": "Version",
+      "type": "string",
+      "label": "The Version to replace ${Version} with",
+      "defaultValue": "5.2",
+      "required": true,
+      "helpMarkDown": "Set this to add version"
+    },
+    {
+      "name": "OutputFolder",
+      "type": "string",
+      "label": "Specify the tempfolder",
+      "defaultValue": "$(Build.ArtifactStagingDirectory)\\docs",
+      "required": true
+    },
+    {
+      "name": "InputRootFolder",
+      "type": "string",
+      "label": "Specify the inputfolder",
+      "defaultValue": "$(Build.SourcesDirectory)",
+      "required": true
+    },
+    {
+      "name": "OutputZipName",
+      "type": "string",
+      "label": "Specify the documentation",
+      "defaultValue": "${Version}_Documentation.zip",
+      "required": true,
+      "helpMarkDown": "Version can be overwritten with a variable DocVersion"
+    }
+  ],
+  "instanceNameFormat": "CreateDocumentationTask",
+  "execution": {
+    "PowerShell3": {
+      "target": "$(currentDirectory)\\CreateDocumentationTask.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}
