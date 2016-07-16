@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "createdocumentation-extension",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "name": "Create Documentation Extension",
   "scopes": [ "vso.build" ],
   "description": "This extension adds the createdocumentation Task.",
