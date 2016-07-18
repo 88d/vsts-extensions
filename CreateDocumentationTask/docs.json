@@ -1,20 +1,20 @@
 {
     "documents":[
         {
-            "in":"UserGuide/cMOREShare_5.2_UserGuide_Administratoren_DE.docx",
-            "out":"UserGuide/cMOREShare_${Version}_UserGuide_Administratoren_DE.docx"
+            "in":"UserGuide/Black_Banana_UserGuide_DE.docx",
+            "out":"UserGuide/Black_Banana_UserGuide_${Version}_DE.pdf"
         },
                 {
-            "in":"UserGuide/cMOREShare_5.2_UserGuide_Administrators_EN.docx",
-            "out":"UserGuide/cMOREShare_${Version}_UserGuide_Administrators_EN.docx"
+            "in":"UserGuide/Black_Banana_UserGuide_EN.docx",
+            "out":"UserGuide/Black_Banana_UserGuide_${Version}_EN.pdf"
         },
                 {
-            "in":"UserGuide/cMOREShare_5.2_UserGuide_Benutzer_DE.docx",
-            "out":"UserGuide/cMOREShare_${Version}_UserGuide_Benutzer_DE.docx"
+            "in":"UserGuide/Black_Banana_SetupGuide_EN.docx",
+            "out":"UserGuide/Black_Banana_SetupGuide_${Version}_EN.pdf"
         },
                 {
-            "in":"UserGuide/cMOREShare_5.2_UserGuide_Users_EN.docx",
-            "out":"UserGuide/cMOREShare_${Version}_UserGuide_Users_EN.docx"
+            "in":"UserGuide/Black_Banana_SetupGuide_DE.docx",
+            "out":"UserGuide/Black_Banana_SetupGuide_${Version}_DE.pdf"
         },
         "CHANGELOG.txt"
     ]
