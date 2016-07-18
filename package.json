@@ -5,7 +5,7 @@
   "devDependencies": {
     "tfx-cli": "^0.3.15"
   },
-  "name": "CreateDocumentationVSTSTaskExtension",
+  "name": "vsts-extensions",
   "private": true,
-  "version": "0.2.5"
+  "version": "0.3.0"
 }
