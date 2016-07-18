@@ -3,7 +3,7 @@
   "name": "CreateDocumentationTask",
   "friendlyName": "Create Documentation Task",
   "description": "This build tasks creates a documentation Zip",
-  "helpMarkDown": "[More Information](https://url.to/yourmarkdown)",
+  "helpMarkDown": "[More Information](https://github.com/black-banana/vsts-extensions)",
   "category": "Utility",
   "visibility": [
     "Build",
@@ -24,7 +24,7 @@
       "name": "ConfigPath",
       "type": "filePath",
       "label": "Path to docs.json",
-      "defaultValue": "$(Build.SourcesDirectory)\\docs.json",
+      "defaultValue": "docs.json",
       "required": true
     },
     {

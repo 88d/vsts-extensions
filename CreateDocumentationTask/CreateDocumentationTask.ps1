@@ -52,7 +52,7 @@ try {
 
     $config = Get-Content $ConfigPath -Raw | ConvertFrom-Json
 
-    Write-Host "Found $($config.documents.Count) documents in $ConfigPath"
+    Write-VstsTaskVerbose "Found $($config.documents.Count) entries in $ConfigPath"
 
     $fileList = @();
     $fileConvertList = @();
@@ -61,23 +61,16 @@ try {
             $in = Get-InputPath $doc
             $out = Get-OutputPath $doc
             Write-VstsTaskDebug "Add $doc to fileList"
-            $fileList += (@{
-                in=$in
-                out=$out});
+            $fileList += (@{in=$in;out=$out});
         } else {
             $in = Get-InputPath $doc.in;
             $out = Get-OutputPath $doc.out;
             if($in.EndsWith(".docx") -and $out.EndsWith(".pdf")){
                 Write-VstsTaskDebug "Add $in as $out to fileConvertList"
-                $fileConvertList += (@{
-                    in=$in
-                    out=$out
-                });
+                $fileConvertList += (@{in=$in;out=$out});
             } else {
                 Write-VstsTaskDebug "Add $in as $out to fileList"
-                $fileList += (@{
-                in=$in
-                out=$out});
+                $fileList += (@{in=$in;out=$out});
             }
         }
     }
@@ -100,6 +93,7 @@ try {
                 if(Test-Path $file.in){
                     New-Item -ItemType File -Force $file.out | Out-Null
                     Remove-Item $file.out -Force | Out-Null
+                    Write-Host "Converted $($file.in) to $($file.out)"
                 } else {
                     Write-VstsTaskError "File $($file.in) not found!"
                 }
@@ -131,6 +125,7 @@ try {
                 # This creates a new folder in the structure         
                 New-Item -Type File -Force $file.out | Out-Null
                 Copy-Item $file.in $file.out -Recurse -Force | Out-Null
+                Write-Host "Copied $($file.in) to $($file.out)"
             } else {
                 Write-VstsTaskError "File $($file.in) not found!"            
             }            
@@ -147,7 +142,7 @@ try {
     }
     Write-VstsTaskVerbose "Creating $zipOutputPath"
     Compress-Archive -Path $OutputFolder\* -DestinationPath $zipOutputPath -Force
-
+    Write-Host "Created $zipOutputPath"
 } catch {
     Write-VstsTaskError "An Error happend in CreateDocumentationTask"
     throw

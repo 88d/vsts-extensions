@@ -4,9 +4,9 @@
   "version": "0.2.5",
   "name": "Create Documentation Extension",
   "scopes": [ "vso.build" ],
-  "description": "This extension adds the createdocumentation Task.",
+  "description": "This extension adds a create documentation task.",
   "baseUri": "https://localhost",
-  "publisher": "pmone",
+  "publisher": "black-banana",
   "public": false,
   "icons": {
     "default": "img/logo.png"
@@ -21,26 +21,20 @@
   ],
   "links": {
     "home": {
-      "uri": "https://bit.ly"
+      "uri": "https://github.com/black-banana/vsts-extensions"
     },
     "getstarted": {
-      "uri": "https://bit.ly"
-    },
-    "learn": {
-      "uri": "https://bit.ly"
-    },
-    "support": {
-      "uri": "https://bit.ly"
+      "uri": "https://github.com/black-banana/vsts-extensions"
     },
     "repository": {
-      "uri": "https://bit.ly"
+      "uri": "https://github.com/black-banana/vsts-extensions"
     },
     "issues": {
-      "uri": "https://bit.ly"
+      "uri": "https://github.com/black-banana/vsts-extensions/issues"
     }
   },
   "branding": {
-    "color": "rgb(220, 235, 252)",
+    "color": "rgb(255, 102, 0)",
     "theme": "light"
   },
   "files": [
