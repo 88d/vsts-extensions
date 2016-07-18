@@ -14,18 +14,6 @@ $ErrorActionPreference = "Stop"
 
 Import-Module $PSScriptRoot\ps_modules\VstsTaskSdk
 
-$ConfigPath = GetVstsInputField "ConfigPath"
-$Version = GetVstsInputField "Version"
-$OutputFolder = GetVstsInputField "OutputFolder"
-$InputRootFolder = GetVstsInputField "InputRootFolder"
-$OutputZipName = GetVstsInputField "OutputZipName"
-
-$TaskVersion = Get-VstsTaskVariable -Name "DocVersion"
-if($TaskVersion -ne ""){
-    Write-Output "Version is overwritten with Variable 'DocVersion' to $TaskVersion"
-    $Version = $TaskVersion
-}
-
 function GetVstsInputField([string]$path){
     $value = Get-VstsInput -Name "$path"
     Write-Host "$($path): $value"
@@ -48,6 +36,18 @@ function Get-OutputPath($name) {
 function CreateOutputPath([string]$path){
     New-Item -ItemType File -Force $path| Out-Null
     Remove-Item $path -Force | Out-Null
+}
+
+$ConfigPath = GetVstsInputField "ConfigPath"
+$Version = GetVstsInputField "Version"
+$OutputFolder = GetVstsInputField "OutputFolder"
+$InputRootFolder = GetVstsInputField "InputRootFolder"
+$OutputZipName = GetVstsInputField "OutputZipName"
+
+$TaskVersion = Get-VstsTaskVariable -Name "DocVersion"
+if($TaskVersion -ne ""){
+    Write-Output "Version is overwritten with Variable 'DocVersion' to $TaskVersion"
+    $Version = $TaskVersion
 }
 
 Write-VstsTaskVerbose "Starting CreateDocumentationTask"
