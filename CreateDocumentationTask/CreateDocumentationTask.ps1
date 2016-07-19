@@ -17,6 +17,7 @@ Import-Module $PSScriptRoot\ps_modules\VstsTaskSdk
 function GetVstsInputField([string]$path){
     $value = Get-VstsInput -Name "$path"
     Write-Host "$($path): $value"
+    return $value
 }
 
 function ReplaceParameters([string]$name) {
