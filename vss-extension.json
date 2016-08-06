@@ -1,10 +1,10 @@
 {
   "manifestVersion": 1,
-  "id": "createdocumentation-extension",
-  "version": "0.3.0",
-  "name": "Create Documentation Extension",
+  "id": "blackbanana-build-extensions",
+  "version": "0.5.0",
+  "name": "Blackbanana Build Extensions",
   "scopes": [ "vso.build" ],
-  "description": "This extension adds a create documentation task.",
+  "description": "This extension adds multiple tasks to help with vsts.",
   "baseUri": "https://localhost",
   "publisher": "black-banana",
   "public": false,
@@ -17,7 +17,8 @@
     }
   ],
   "tags": [
-    "Documentation"
+    "Documentation",
+    "BuildArtifacts"
   ],
   "links": {
     "home": {
@@ -40,6 +41,9 @@
   "files": [
     {
       "path": "CreateDocumentationTask"
+    },
+    {
+      "path": "DownloadBuildArtifactsTask"
     }
   ],
   "categories": [
@@ -54,6 +58,16 @@
       "type": "ms.vss-distributed-task.task",
       "properties": {
         "name": "CreateDocumentationTask"
+      }
+    },
+    {
+      "id": "downloadbuildartifacts-task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "type": "ms.vss-distributed-task.task",
+      "properties": {
+        "name": "DownloadBuildArtifactsTask"
       }
     }
   ]

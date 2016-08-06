@@ -1,0 +1,59 @@
+﻿{
+  "id": "5197502a-4667-43e3-b8d5-26428c1f96d0",
+  "name": "DownloadBuildArtifactsTask",
+  "friendlyName": "Download Build Artifacts Task",
+  "description": "This task downloads the latest provided build artifacts",
+  "helpMarkDown": "[More Information](https://github.com/black-banana/vsts-extensions)",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "author": "conuk",
+  "version": {
+    "Major": 0,
+    "Minor": 1,
+    "Patch": 0
+  },
+  "demands": [
+  ],
+  "minimumAgentVersion": "1.91.0",
+  "groups": [],
+  "inputs": [
+    {
+      "name": "ProjectUrl",
+      "type": "string",
+      "label": "Url to the Project",
+      "defaultValue": "https://tfs:8080/tfs/DefaultCollection/DefaultProject",
+      "required": true
+    },
+    {
+      "name": "BuildDefinitionId",
+      "type": "string",
+      "label": "BuildDefinitionId",
+      "defaultValue": "1",
+      "required": true
+    },
+    {
+      "name": "OutputFolder",
+      "type": "string",
+      "label": "Specify the outputFolder",
+      "defaultValue": "$(Build.ArtifactStagingDirectory)\\docs",
+      "required": true
+    },
+    {
+      "name": "ArtifactNames",
+      "type": "string",
+      "label": "ArtifactNames",
+      "helpMarkDown": "Artifacts to Copy in format 'build,setup'"
+    }
+  ],
+  "instanceNameFormat": "DownloadBuildArtifactsTask",
+  "execution": {
+    "PowerShell3": {
+      "target": "$(currentDirectory)\\DownloadBuildArtifactsTask.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}
