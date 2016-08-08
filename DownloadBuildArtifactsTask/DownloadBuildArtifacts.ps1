@@ -1,9 +1,9 @@
 [System.Net.WebClient]$webClient = New-Object System.Net.WebClient
 $webClient.UseDefaultCredentials = $true
 
-function DownloadFile($fileUrl,$downloadFolder){
-    Write-Host "DownloadFile from $fileUrl to $downloadFolder"
-    $webClient.DownloadFile($fileUrl,$downloadFolder)
+function DownloadFile($fileUrl,$downloadFileName){
+    Write-Host "DownloadFile from $fileUrl to $downloadFileName"
+    $webClient.DownloadFile($fileUrl,$downloadFileName)
 }
 
 function GetJsonResult($jsonUrl){
@@ -32,7 +32,8 @@ function DownloadBuildArtifacts($artifacts,$outputFolder,$artifactNames){
             continue
         }    
         $downloadUrl = "$($artifact.value.resource.downloadUrl)"
-        DownloadFile $downloadUrl $outputFolder        
+        $outputFileName = Join-Path $outputFolder "$($artifact.value.name).zip"
+        DownloadFile $downloadUrl $outputFileName        
     }
 }
 
