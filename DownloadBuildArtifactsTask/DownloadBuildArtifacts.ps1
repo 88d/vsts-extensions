@@ -27,6 +27,7 @@ function GetBuildArtifacts($projectUrl, $buildId){
 
 function DownloadBuildArtifacts($artifacts,$outputFolder,$artifactNames){    
     Write-Host "DownloadBuildArtifacts into $outputFolder"
+    New-Item -ItemType Directory -Force -Path $outputFolder | Out-Null
     foreach($artifact in $artifacts) {
         if($artifactNames.Length -gt 0 -and -not $artifactNames.Contains($artifact.value.name)) {
             continue
