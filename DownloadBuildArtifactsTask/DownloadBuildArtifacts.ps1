@@ -31,7 +31,7 @@ function DownloadBuildArtifacts($artifacts,$outputFolder,$artifactNames){
         if($artifactNames.Length -gt 0 -and -not $artifactNames.Contains($artifact.value.name)) {
             continue
         }    
-        $downloadUrl = "$($artifact.value.resource.downloadUrl)/$($artifact.value.name)"
+        $downloadUrl = "$($artifact.value.resource.downloadUrl)"
         DownloadFile $downloadUrl $outputFolder        
     }
 }
