@@ -42,7 +42,7 @@
     "instanceNameFormat": "SharePointUploadTask",
     "execution": {
         "PowerShell3": {
-            "target": "$(currentDirectory)\\SharePoinFileUploadTask.ps1",
+            "target": "$(currentDirectory)\\SharePointUploadTask.ps1",
             "argumentFormat": "",
             "workingDirectory": "$(currentDirectory)"
         }
