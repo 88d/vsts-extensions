@@ -8,19 +8,6 @@
 #               "Apps for SharePoint"  develop machine
 # $Credentials e.g. (new-object -typename System.Management.Automation.PSCredential -argumentlist "<userName>", (convertTo-SecureString '<pwd>' -asplaintext -force))
 
-
-# settings
-PARAM
-(
-[Parameter(Mandatory=$true)]
-[string] $SiteURL = "http://<server>/sites/<user>",
-[Parameter(Mandatory=$true)]
-[string] $File = "C:\development\<test>.app",
-[Parameter(Mandatory=$true)]
-[string] $DocLibName = "App Packages",
-$Credentials = $null
-)
-
 #Add references to SharePoint client assemblies and authenticate to Office 365 site – required for CSOM
 try
 {
@@ -32,37 +19,38 @@ catch
     # type already installed
 }
 
-
-#Bind to site collection
-$Context = New-Object Microsoft.SharePoint.Client.ClientContext($SiteURL)
-
-#Load Cretentials
-if ($Credentials)
-{
-    $Context.Credentials = $Credentials
+function CreateSharePointClientContext([String]$siteURL, $credentials) {
+    #Bind to site collection
+    $context = New-Object Microsoft.SharePoint.Client.ClientContext($siteURL)
+    #Load Cretentials
+    if ($credentials)
+    {
+        $context.Credentials = $credentials
+    }
+    return $context;
 }
 
-#Retrieve list
-$List = $Context.Web.Lists.GetByTitle($DocLibName)
-$Context.Load($List)
-$Context.ExecuteQuery()
-
-
-#Upload file
-if (Test-Path $File)
-{
-    $fileItem = Get-ChildItem $File
-    $FileStream = New-Object IO.FileStream($File,[System.IO.FileMode]::Open)
-    $FileCreationInfo = New-Object Microsoft.SharePoint.Client.FileCreationInformation
-    $FileCreationInfo.Overwrite = $true
-    $FileCreationInfo.ContentStream = $FileStream
-    $FileCreationInfo.URL = $fileItem.Name
-    $Upload = $List.RootFolder.Files.Add($FileCreationInfo)
-    $Context.Load($Upload)
-    $Context.ExecuteQuery()
-    $FileStream.Close()
-}
-else
-{
-   "File not found"
+function UploadFileToSharePointList ([Microsoft.SharePoint.Client.ClientContext]$clientContext, [String]$file, [String]$docLibName) {
+    #Retrieve list
+    $List = $clientContext.Web.Lists.GetByTitle($docLibName)
+    $clientContext.Load($List)
+    $clientContext.ExecuteQuery()
+    #Upload file
+    if (Test-Path $file)
+    {
+        $fileItem = Get-ChildItem $file
+        $FileStream = New-Object IO.FileStream($file,[System.IO.FileMode]::Open)
+        $FileCreationInfo = New-Object Microsoft.SharePoint.Client.FileCreationInformation
+        $FileCreationInfo.Overwrite = $true
+        $FileCreationInfo.ContentStream = $FileStream
+        $FileCreationInfo.URL = $fileItem.Name
+        $Upload = $List.RootFolder.Files.Add($FileCreationInfo)
+        $clientContext.Load($Upload)
+        $clientContext.ExecuteQuery()
+        $FileStream.Close()
+    }
+    else
+    {
+        throw "File not found"
+    }    
 }
