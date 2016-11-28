@@ -1,5 +1,5 @@
 {
-    "id": "5197502a-4667-43e3-b8d5-26428c1f96d0",
+    "id": "edb3f300-910f-4b16-bb9f-5e09ace1d885",
     "name": "SharePointUploadTask",
     "friendlyName": "Sharepoint Upload Task",
     "description": "This task uploads a file to a share-point list",
@@ -12,7 +12,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 1
+        "Patch": 2
     },
     "demands": [],
     "minimumAgentVersion": "1.91.0",
