@@ -21,11 +21,17 @@ Write-Host "$($path): $value"
 } 
 
 $SiteURL =  GetVstsInputField "SiteURL" 
-$File =  GetVstsInputField "File" 
+$File = GetVstsInputField "File" 
 $DocLibName =  GetVstsInputField "DocLibName" 
 
 # CreateClientContext for access to SharePoint
 $ClientContext = CreateSharePointClientContext $SiteURL $Credentials
 
-# Upload File To SharePoint
-UploadFileToSharePointList $ClientContext $File $DocLibName
+$FileList = Find-VstsFiles -LegacyPattern $File
+
+foreach($file in $FileList){
+    # Upload File To SharePoint
+    Write-Host "Upload file $file to $DocLibName"
+    UploadFileToSharePointList $ClientContext $file $DocLibName
+}
+
