@@ -1,0 +1,52 @@
+{
+  "id": "5197502a-4667-43e3-b8d5-26428c1f96d0",
+  "name": "SharePointUploadTask",
+  "friendlyName": "Sharepoint Upload Task",
+  "description": "This task uploads a file to a share-point list",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "author": "gtotter",
+  "version": {
+    "Major": 0,
+    "Minor": 0,
+    "Patch": 1
+  },
+  "demands": [
+  ],
+  "minimumAgentVersion": "1.91.0",
+  "groups": [],
+  "inputs": [
+    {
+      "name": "SiteURL",
+      "type": "string",
+      "label": "url for the sharpoint-site",
+      "defaultValue": "http://share.dev.local/",
+      "required": true
+    },
+    {
+      "name": "File",
+      "type": "string",
+      "label": "Upload file",
+      "defaultValue": "sharepointapp.app",
+      "required": true
+    },
+    {
+      "name": "DocLibName",
+      "type": "string",
+      "label": "Name of the sharepoint list where the file should be added to",
+      "defaultValue": "App Packages",
+      "required": true
+    }
+  ],
+  "instanceNameFormat": "SharePointUploadTask",
+  "execution": {
+    "PowerShell3": {
+      "target": "$(currentDirectory)\\sharePointUpload.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
+    }
+  }
+}
