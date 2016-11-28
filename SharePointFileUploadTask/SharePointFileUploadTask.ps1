@@ -3,17 +3,20 @@
 # 
 [CmdletBinding(DefaultParameterSetName = 'None')] 
  param( 
- 	[string] $ProjectUrl = "https://tfs:8080/tfs/DefaultCollection/DefaultProject", 
-    [string] $BuildDefinitionId = "1", 
-    [string] $ArtifactNames ="build,setup", 
-    [string] $OutputFolder = '$(Build.ArtifactStagingDirectory)\\build' 
+[Parameter(Mandatory=$true)]
+[string] $SiteURL = "http://<server>/sites/<user>",
+[Parameter(Mandatory=$true)]
+[string] $File = "C:\development\<test>.app",
+[Parameter(Mandatory=$true)]
+[string] $DocLibName = "App Packages",
+$Credentials = $null
  ) 
  
  
  $ErrorActionPreference = "Stop" 
  
  
- Import-Module $PSScriptRoot\SharePointUpload.ps1 
+Import-Module $PSScriptRoot\ps_modules\VstsTaskSdk 
 
  
 function GetVstsInputField([string]$path){ 
@@ -26,4 +29,4 @@ $SiteURL =  GetVstsInputField "SiteURL"
 $File =  GetVstsInputField "File" 
 $DocLibName =  GetVstsInputField "DocLibName" 
  
-./SharPointUpload.ps1 -SiteURL $SiteURL -File $File -DocLibName $DocLibName
+.$PSScriptRoot\SharePointUpload.ps1 -SiteURL $SiteURL -File $File -DocLibName $DocLibName
