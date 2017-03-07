@@ -13,7 +13,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 2
+        "Patch": 3
     },
     "demands": [],
     "minimumAgentVersion": "1.91.0",
@@ -23,6 +23,12 @@
             "type": "string",
             "label": "Path to Certificate",
             "defaultValue": "C:\\PathToCertificate",
+            "required": true
+        }, {
+            "name": "CertificatePassword",
+            "type": "string",
+            "label": "Password to Certificate",
+            "defaultValue": "$(certificate_password)",
             "required": true
         },
         {
