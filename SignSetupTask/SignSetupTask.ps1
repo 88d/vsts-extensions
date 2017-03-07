@@ -19,7 +19,7 @@ function GetVstsInputField([string]$path){
 }
 
 $CertificatePath = GetVstsInputField "CertificatePath"
-$CertificatePassword = GetVstsInputField "CertificatePassword"
+# $CertificatePassword = GetVstsInputField "CertificatePassword"
 $SetupFolderPath = GetVstsInputField "SetupFolderPath"
 $SignToolPath = GetVstsInputField "SignToolPath"
 
@@ -31,6 +31,11 @@ if ($ENV:CERTIFICATE_PATH) {
 if ($ENV:CERTIFICATE_PASSWORD) {
     Write-Host "CertificatePath from Environment"
     $CertificatePassword = $ENV:CERTIFICATE_PASSWORD
+}
+
+if(-not $CertificatePassword){
+    Write-Error '$ENV:CERTIFICATE_PASSWORD needs to be set!'
+    exit 1
 }
 
 if ($ENV:SETUP_PATH) {
