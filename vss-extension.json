@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "blackbanana-build-extensions",
-    "version": "0.7.0",
+    "version": "0.7.1",
     "name": "Blackbanana Build Extensions",
     "scopes": ["vso.build"],
     "description": "This extension adds multiple tasks to help with vsts.",
