@@ -20,16 +20,16 @@
     ],
     "links": {
         "home": {
-            "uri": "https://github.com/black-banana/vsts-extensions"
+            "uri": "https://github.com/88d/vsts-extensions"
         },
         "getstarted": {
-            "uri": "https://github.com/black-banana/vsts-extensions"
+            "uri": "https://github.com/88d/vsts-extensions"
         },
         "repository": {
-            "uri": "https://github.com/black-banana/vsts-extensions"
+            "uri": "https://github.com/88d/vsts-extensions"
         },
         "issues": {
-            "uri": "https://github.com/black-banana/vsts-extensions/issues"
+            "uri": "https://github.com/88d/vsts-extensions/issues"
         }
     },
     "branding": {
@@ -42,6 +42,8 @@
         "path": "DownloadBuildArtifactsTask"
     }, {
         "path": "SharePointUploadTask"
+    }, {
+        "path": "SignSetupTask"
     }],
     "categories": [
         "Build and release"
@@ -74,6 +76,15 @@
             "type": "ms.vss-distributed-task.task",
             "properties": {
                 "name": "SharePointUploadTask"
+            }
+        }, {
+            "id": "signsetup-task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "type": "ms.vss-distributed-task.task",
+            "properties": {
+                "name": "SignSetupTask"
             }
         }
     ]
