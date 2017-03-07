@@ -22,6 +22,7 @@ $CertificatePath = GetVstsInputField "CertificatePath"
 # $CertificatePassword = GetVstsInputField "CertificatePassword"
 $SetupFolderPath = GetVstsInputField "SetupFolderPath"
 $SignToolPath = GetVstsInputField "SignToolPath"
+$SetupFileExtensions = @("*.msi","*.exe")
 
 if ($ENV:CERTIFICATE_PATH) {
     Write-Host "CertificatePath overwritten from Environment $($ENV:CERTIFICATE_PATH)"
@@ -47,8 +48,9 @@ if (-not $SignToolPath){
     $SignToolPath = "$PSScriptRoot\signtool.exe"
 }
 
-$filesToSign = Get-ChildItem $setupRoot -Include $setupFiletypes -Recurse | Select -ExpandProperty FullName
+
+$filesToSign = Get-ChildItem $SetupFolderPath -Include $SetupFileExtensions -Recurse | Select -ExpandProperty FullName
 
 foreach ($file in $filesToSign){
-    start-process $signtoolPath "sign /f $certificatePath /p $certificatePassword /fd sha256 /tr http://sha256timestamp.ws.symantec.com/sha256/timestamp /v $file" -Wait -NoNewWindow
+    start-process $SignToolPath "sign /f $CertificatePath /p $CertificatePassword /fd sha256 /tr http://sha256timestamp.ws.symantec.com/sha256/timestamp /v $file" -Wait -NoNewWindow
 }
